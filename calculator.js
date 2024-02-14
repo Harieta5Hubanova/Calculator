@@ -47,6 +47,7 @@ function operate(operator, num1, num2) {
 let displayValue = '';
 let firstNumber = '';
 let operator = '';
+let result = '';
 
 function appendNumber(number) {
     displayValue += number;
@@ -54,11 +55,19 @@ function appendNumber(number) {
 }
 
 function appendOperator(op) {
-    if (firstNumber === '') {
+    if (result !== '') {
+        firstNumber = result;
+        result = '';
+    }
+    if(firstNumber === ''){
         firstNumber = parseFloat(displayValue);
         displayValue = '';
         operator = op;
+    
     } else {
+        if(operator==='/'){
+            displayValue = ''
+        }
         calculate();
         operator = op;
     }
@@ -91,22 +100,24 @@ function updateDisplay() {
 function calculate() {
     if (operator && firstNumber !== '' && displayValue !== '') {
         let secondNumber = parseFloat(displayValue);
-        let currentResult = operate(operator, firstNumber, secondNumber);
-        if (currentResult !== undefined) {
-            displayValue = currentResult.toString();
-            firstNumber = currentResult;
+        let currentResult = operate(operator, parseFloat(firstNumber), secondNumber);
+        if (!isNaN(currentResult)) {
+            result = currentResult.toString();
+            displayValue = result;
+            firstNumber = result;  // Keep firstNumber unchanged until the next operator
             operator = '';
-            result=currentResult
             updateDisplay();
+        } else {
+            // Handle the case where the result is not a valid number
+            displayError("Invalid result");
         }
     }
 }
 
 
-
 function handleEquals() {
-    firstNumber=result !=="" ? result : firstNumber
-    calculate();
+   calculate();
+   result = '';
 }
 
 
