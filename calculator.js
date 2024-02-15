@@ -65,11 +65,13 @@ function appendOperator(op) {
         operator = op;
     
     } else {
-        if(operator==='/'){
-            displayValue = ''
-        }
+        // if(operator==='/'){
+        //     displayValue = ''
+        // }
         calculate();
         operator = op;
+        displayValue = ''
+        // console.log(op)
     }
 }
 
