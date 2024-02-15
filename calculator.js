@@ -109,10 +109,11 @@ function calculate() {
             firstNumber = result;  // Keep firstNumber unchanged until the next operator
             operator = '';
             updateDisplay();
-        } else {
+        } 
+        //else {
             // Handle the case where the result is not a valid number
-            displayError("Invalid result");
-        }
+            //displayError("Invalid result");
+        //}
     }
 }
 
