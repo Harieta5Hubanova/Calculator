@@ -106,7 +106,7 @@ function calculate() {
         if (!isNaN(currentResult)) {
             result = currentResult.toString();
             displayValue = result;
-            firstNumber = result;  // Keep firstNumber unchanged until the next operator
+            firstNumber = currentResult.toString();  // Keep firstNumber unchanged until the next operator
             operator = '';
             updateDisplay();
         } 
