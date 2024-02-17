@@ -1,4 +1,4 @@
-// Basic math functions
+
 function add(a, b) {
     return a + b;
 }
@@ -18,8 +18,6 @@ function divide(a, b) {
     }
     return a / b;
 }
-
-// Display error function
 
 
 function displayError(message) {
@@ -65,9 +63,7 @@ function appendOperator(op) {
         operator = op;
     
     } else {
-        // if(operator==='/'){
-        //     displayValue = ''
-        // }
+        
         calculate();
         operator = op;
         displayValue = ''
@@ -110,10 +106,7 @@ function calculate() {
             operator = '';
             updateDisplay();
         } 
-        //else {
-            // Handle the case where the result is not a valid number
-            //displayError("Invalid result");
-        //}
+        
     }
 }
 
@@ -151,11 +144,18 @@ document.querySelectorAll('#calculator button').forEach(button => {
 // Add keyboard support
 document.addEventListener('keydown', (event) => {
     const key = event.key;
+    const code = event.code
 
     if (key >= '0' && key <= '9') {
         handleButtonClick(key);
-    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
-        appendOperator(key);
+    } else if (code === 'NumpadAdd' || key === '+') {
+        appendOperator('+');
+    } else if (code === 'NumpadSubtract' || key === '-') {
+        appendOperator('-');
+    } else if (code === 'NumpadMultiply' || key === '*') {
+        appendOperator('*');
+    } else if (code === 'NumpadDivide' || key === '/') {
+        appendOperator('/');
     } else if (key === '.') {
         appendDecimal();
     } else if (key === 'Enter') {
